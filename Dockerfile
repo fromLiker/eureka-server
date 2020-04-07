@@ -1,5 +1,5 @@
 FROM java:8
-ADD eureka-server-0.0.1-SNAPSHOT.jar teureka.jar
-RUN sh -c 'touch /teureka.jar'
-ENV JAVA_OPTS=""
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /teureka.jar" ]
+WORKDIR /teureka
+COPY target/eureka-server-0.0.1-SNAPSHOT.jar /teureka/teureka.jar
+EXPOSE 8761
+ENTRYPOINT ["java","-Xms200m","-Xmx300m","-jar","/teureka/teureka.jar"]
