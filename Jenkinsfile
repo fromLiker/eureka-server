@@ -20,7 +20,7 @@ pipeline {
       agent any
       steps {
           sh 'docker image build -t ${DOCKERHUBNAME}/teureka .'
-          sh 'docker run -d -p 8761:8761 ${DOCKERHUBNAME}/teureka'
+          sh 'docker run -d -p 8761:8761 --name seataeureka ${DOCKERHUBNAME}/teureka'
       }
     }
 
